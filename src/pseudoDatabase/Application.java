@@ -7,15 +7,77 @@ package pseudoDatabase;
  * May 13, 2014 v1.0 - Initial push.
  * May 15, 2014 v1.02 - Made changes to comments to improve readability.
  * 						Added deleteFirst() method for later implementation.
+ * May 21, 2014 v1.12 - Created User Interface.
+ * 						Implemented deleteFirst() method.
  */
 
+import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 
-public class Application {
+import javax.swing.*;
+
+public class Application extends JFrame {
+	
+	private static final int MAINMENUWIDTH = 700;
+	private static final int MAINMENUHEIGHT = 100;
+	
+	String value;
+	
+	public Application() {																	// Constructor.
+		
+		setTitle("Pseudo-Database Using Linked Lists");
+		setSize(MAINMENUWIDTH, MAINMENUHEIGHT);
+		
+		JButton displayButton = new JButton("Display Parts By Model Number");				// Creates new button to display all parts by model number.
+		displayButton.addActionListener(new ActionListener() {
+			
+            public void actionPerformed(ActionEvent e) {
+            	
+                String value = JOptionPane.showInputDialog("Enter the Model Number:");		// Identifies which part to display.
+                
+                FirstTableLinkList.display(value);											// Tries to locate the part on the first table.
+                SecondTableLinkList.display(value);											// Tries to locate the part on the second table.
+                
+            }
+        });
+		
+		JButton deleteButton = new JButton("Delete Part");									// Creates new button to delete parts.
+		deleteButton.addActionListener(new ActionListener() {
+			
+            public void actionPerformed(ActionEvent e) {
+            	
+            	String deleteDialog = "Warning!" + "\n" + "Will Delete First Item in the Parts Table!";
+            	
+            	JOptionPane.showMessageDialog(null, deleteDialog, "Will Delete First Item", JOptionPane.INFORMATION_MESSAGE);
+            	
+            	FirstTableLinkList.deleteFirst();											// Tries to delete the part on the first table.
+            	
+            }
+        });
+		
+		JButton exitButton = new JButton("Close Program");									// Creates new button to exit program.
+		exitButton.addActionListener(new ActionListener() {
+			
+            public void actionPerformed(ActionEvent e) {System.exit(0);} });				// Exits the application.
+		
+		getContentPane().setLayout(new GridLayout(1, 3));									// Sets the layout of the content pane.
+		
+		// Adds the buttons to the content pane of the JFrame.
+		getContentPane().add(displayButton);
+		getContentPane().add(deleteButton);
+		getContentPane().add(exitButton);
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);																	// Make sure it's visible!
+		
+	}
+
+	private static final long serialVersionUID = 2940226030836815245L;
 
 	public static void main(String[] args) throws IOException {
 		
-		String value;
+		new Application();
 		
 		FirstTableLinkList firstTable = new FirstTableLinkList();
 		SecondTableLinkList secondTable = new SecondTableLinkList();
@@ -87,51 +149,6 @@ public class Application {
 		secondTable.insertFirst("BestBuy","def000",2,319.98);
 		secondTable.insertFirst("ATT","stu000",1,209.99);
 		secondTable.insertFirst("TigerDirect","jkl000",3,539.97);
-		
-		while(true) {																		// Creates user interface.
-			
-		System.out.print("Enter first letter of display or find: ");
-		int choice = getChar();
-		
-		switch(choice) {
-		
-		case 'd':																			// User selected 'd' to display all parts by a model number.
-		System.out.print("Enter the model number to display: ");
-		value = getString();																// Determines what the user input is.
-		System.out.print("Querying first table: ");
-		FirstTableLinkList.display(value);													// Tries to locate the part on the first table.
-		System.out.print("Querying second table: ");
-		SecondTableLinkList.display(value);													// Tries to locate the part on the second table.
-		break;
-		
-		case 'f':																			// User selected 'f' to find a part.
-		System.out.print("Query first or second table?");
-		int pickTable = getChar();															// Determines what the user input is.															
-			switch(pickTable) {
-				case 'f':																	// User selected the first table to 'query'.
-					System.out.print("Enter the model number to find: ");
-					value = getString();													// Determines what the user input is.
-					System.out.print("Querying first table: ");
-					firstTable.find(value);													// Tries to locate the part(s) on the first table.
-					break;
-				case 's':																	// User selected the second table to 'query'.
-					System.out.print("Enter the model number to find: ");
-					value = getString();													// Determines what the user input is.
-					System.out.print("Querying second table: ");
-					secondTable.find(value);												// Tries to locate the part(s) on the second table.
-					break;	
-				
-				default:
-					System.out.print("Invalid entry. Please enter only the first letter of 'first' or 'second' in lowercase. \n");
-			} // End pick table switch.
-		break;
-		
-		default:
-			System.out.print("Invalid entry. Please enter only the first letter of 'display' or 'find' in lowercase. \n");
-		
-		} // End choice switch.
-		
-	} // End user interface while loop.
 		
 }
 

@@ -23,7 +23,7 @@ public class SecondTableLinkList {
 	
 // -------------------------------------------------------------
 	
-	public SecondTableLink deleteFirst() {														// Deletes first link (assumes list not empty).
+	public static SecondTableLink deleteFirst() {												// Deletes first link (assumes list not empty).
 		SecondTableLink temp = first;															// Save reference to the link.
 		first = first.next;																		// Delete the link: New first is the next item in list.
 		return temp;																			// Return the deleted link.
@@ -38,7 +38,7 @@ public class SecondTableLinkList {
 			current.displayLink();																// Display and move to next link.
 			current = current.next;
 		}
-		System.out.println("");
+
 	} // End of dislayList() method.
 	
 // -------------------------------------------------------------
@@ -51,20 +51,20 @@ public class SecondTableLinkList {
 				current = current.next;
 			} else {current = current.next;}													// Otherwise, move to next link.
 		}
-		System.out.println("");
+
 	} // End of display() method.
 	
 // -------------------------------------------------------------
 	
-	public void find(String value) {															// Find a part with the passed modelNumber.
+	public static void find(String value) {														// Find a part with the passed modelNumber.
 		SecondTableLink current = first;														// Start at the beginning of the list,
 		while(current != null) {																// search until end of the list.
 			if(current.modelNumber.equals(value)) {												// If found, display and break out of loop.
-				System.out.println("Found: " + value);
+				current.displayLink();
 				break;
 			} else {current = current.next;}													// Otherwise, move to next link.
 		}
-		System.out.println("");
+
 	} // End of find() method
 	
 // -------------------------------------------------------------

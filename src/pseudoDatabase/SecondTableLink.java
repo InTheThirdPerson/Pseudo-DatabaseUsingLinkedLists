@@ -1,5 +1,7 @@
 package pseudoDatabase;
 
+import javax.swing.*;
+
 public class SecondTableLink {
 	
 	// Information stored in each link on the list.
@@ -7,6 +9,9 @@ public class SecondTableLink {
 	public String modelNumber;
 	public int quantityOrdered;
 	public double total;
+	
+	public String outputString;
+	
 	public SecondTableLink next;																			// Next link in list.
 	
 // -------------------------------------------------------------
@@ -25,16 +30,13 @@ public class SecondTableLink {
 	public void displayLink() {																				// Display ourself.
 	
 		// Used to display the data when called from the find(), display() or displayList() methods.
-		System.out.print("{ Customer ID#: ");
-		System.out.print(customerID);
-		System.out.print(", Model number: ");
-		System.out.print(modelNumber);
-		System.out.print(", Quantity Ordered: ");
-		System.out.print(quantityOrdered);
-		System.out.print(", Total Cost: $");
-		System.out.print(total);
-		System.out.print("}");
-		System.out.println("");
+		
+		outputString = "{ Customer ID#: " + customerID + "\n" +
+						"Model Number: " + modelNumber + "\n" +
+						"Quantity Ordered: " + quantityOrdered + "\n" +
+						"Total Cost: $" + total + " } \n";
+
+		JOptionPane.showMessageDialog(null, outputString, "Found Item", JOptionPane.INFORMATION_MESSAGE);
 		
 	} // End of displayLink() method.
 	
