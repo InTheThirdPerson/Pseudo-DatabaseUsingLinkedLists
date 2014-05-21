@@ -1,5 +1,5 @@
-Pseudo-DatabaseUsingLinkedLists
-===============================
+Pseudo-Database Using Linked Lists
+==================================
 
 This application is designed to imitate a database using linked list data structures written in Java using the Eclipse IDE.
 
@@ -13,3 +13,5 @@ Version History:
 May 13, 2014 v1.0 - Initial push.
 May 15, 2014 v1.02 - Made changes to comments to improve readability.
 Added deleteFirst() method for later implementation.
+May 21, 2014 v1.12 - Created User Interface.
+Implemented deleteFirst() method.
