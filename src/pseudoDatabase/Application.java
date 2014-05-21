@@ -9,6 +9,7 @@ package pseudoDatabase;
  * 						Added deleteFirst() method for later implementation.
  * May 21, 2014 v1.12 - Created User Interface.
  * 						Implemented deleteFirst() method.
+ * 				v1.13 - Updated text in deleteButton.
  */
 
 import java.awt.*;
@@ -47,9 +48,9 @@ public class Application extends JFrame {
 			
             public void actionPerformed(ActionEvent e) {
             	
-            	String deleteDialog = "Warning!" + "\n" + "Will Delete First Item in the Parts Table!";
+            	String deleteDialog = "Warning!" + "\n" + "Will delete most recently added item in the Parts Table!";
             	
-            	JOptionPane.showMessageDialog(null, deleteDialog, "Will Delete First Item", JOptionPane.INFORMATION_MESSAGE);
+            	JOptionPane.showMessageDialog(null, deleteDialog, "Warning!", JOptionPane.INFORMATION_MESSAGE);
             	
             	FirstTableLinkList.deleteFirst();											// Tries to delete the part on the first table.
             	
